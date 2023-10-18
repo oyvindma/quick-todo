@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
     <title>Text to Checklist Converter</title>
     <style>
           body {
@@ -112,6 +113,18 @@
     </div>
 
     <script>
+        // Service Worker for PWA
+         if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+
+        //CONVERT BUTTON
               document.getElementById("convertBtn").addEventListener("click", function() {
             const inputText = document.getElementById("inputText").value;
             const delimiter = getSelectedDelimiter();
